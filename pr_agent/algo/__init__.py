@@ -77,4 +77,8 @@ MAX_TOKENS = {
     "watsonx/ibm/granite-13b-chat-v2": 8191,
     "watsonx/ibm/granite-34b-code-instruct": 8191,
     "watsonx/mistralai/mistral-large": 32768,
+    # Self-hosted models at CSUI
+    "ollama/llama3.1-csui:8b": 16384,
+    "ollama/qwen2.5-csui:14b": 8192,
+    "ollama/qwen2.5-coder-csui:14b": 8192,
 }
