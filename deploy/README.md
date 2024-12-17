@@ -2,6 +2,13 @@
 
 ## Webhook @ GitLab CSUI
 
+Prepare two environment variable files named `.env-config-gitlab-csui`
+and `.env-secrets-gitlab-csui` in the deployment directory.
+The redacted examples are available in the [`.env-config-gitlab-csui.example`](.env-config-gitlab-csui.example)
+and [`.env-secrets-gitlab-csui.example`](.env-secrets-gitlab-csui.example) files.
+
+After preparing the environment variable files, run Qodo Merge using Docker:
+
 ```shell
 docker run --name qodo-merge_gitlab-csui-webhook \
     --detach \
