@@ -3,10 +3,9 @@
 ## Webhook @ GitLab CSUI
 
 ```shell
-# TODO(addianto): Fix image name
-docker run --name qodo-merge_csui \
+docker run --name qodo-merge_gitlab-csui-webhook \
     --detach \
     --env-file .env-config-gitlab-csui \
     --env-file .env-secrets-gitlab-csui \
-    docker.io/library/alpine:latest
+    docker.io/addianto/qodo-merge:gitlab-csui-webhook
 ```
