@@ -10,9 +10,10 @@ and [`.env-secrets-gitlab-csui.example`](.env-secrets-gitlab-csui.example) files
 After preparing the environment variable files, run Qodo Merge using Docker:
 
 ```shell
-docker run --name qodo-merge_gitlab-csui-webhook \
+docker run --name "qodo-merge_gitlab-csui-webhook" \
     --detach \
     --env-file .env-config-gitlab-csui \
     --env-file .env-secrets-gitlab-csui \
+    --publish "127.0.0.1:3000:3000" \
     docker.io/addianto/qodo-merge:gitlab-csui-webhook
 ```
