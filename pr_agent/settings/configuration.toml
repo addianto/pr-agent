@@ -310,3 +310,7 @@ uri = "./lancedb"
 content = ""
 max_lines_allowed = 800
 enable_global_best_practices = false
+
+[openlit]
+enable_otel_collector = false
+otlp_endpoint = ""
