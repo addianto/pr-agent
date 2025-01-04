@@ -3,12 +3,12 @@ anthropic[vertex]==0.47.1
 atlassian-python-api==3.41.4
 azure-devops==7.1.0b3
 azure-identity==1.15.0
-boto3==1.33.6
+boto3==1.35.92
 certifi==2024.8.30
 dynaconf==3.2.4
 fastapi==0.111.0
 GitPython==3.1.41
-google-cloud-aiplatform==1.38.0
+google-cloud-aiplatform==1.75.0
 google-generativeai==0.8.3
 google-cloud-storage==2.10.0
 Jinja2==3.1.2
@@ -22,7 +22,7 @@ PyYAML==6.0.1
 python-gitlab==3.15.0
 retry==0.9.2
 starlette-context==0.3.6
-tiktoken==0.8.0
+tiktoken==0.7.0
 ujson==5.8.0
 uvicorn==0.22.0
 tenacity==8.2.3
@@ -38,3 +38,4 @@ html2text==2024.2.26
 # langchain==0.2.0
 # langchain-core==0.2.28
 # langchain-openai==0.1.20
+openlit==1.33.2
