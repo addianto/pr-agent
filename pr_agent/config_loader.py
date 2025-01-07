@@ -81,8 +81,13 @@ if pyproject_path is not None:
     get_settings().load_file(pyproject_path, env=f'tool.{PR_AGENT_TOML_KEY}')
 
 enable_openlit = get_settings().get('openlit.enable_otel_collector', False)
+print(f'Enable OpenLIT: {enable_openlit}')
+
 if enable_openlit:
     import openlit
+
+    otel_endpoint: str = get_settings().get('openlit.otlp_endpoint')
+    print(f'OTEL Endpoint:  {otel_endpoint}')
     openlit.init(
-        otlp_endpoint=get_settings().get('openlit.otlp_endpoint')
+        otlp_endpoint=otel_endpoint,
     )
