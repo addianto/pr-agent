@@ -1,4 +1,5 @@
 import copy
+import os
 from enum import Enum
 from json import JSONDecodeError
 
@@ -70,7 +71,7 @@ def start():
     app = FastAPI(middleware=middleware)
     app.include_router(router)
 
-    uvicorn.run(app, host="0.0.0.0", port=3000)
+    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", "3000")))
 
 
 if __name__ == '__main__':
