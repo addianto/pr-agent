@@ -5,7 +5,6 @@ import re
 import uuid
 from typing import Any, Dict, Tuple
 
-import uvicorn
 from fastapi import APIRouter, FastAPI, HTTPException, Request, Response
 from starlette.background import BackgroundTasks
 from starlette.middleware import Middleware
@@ -17,12 +16,12 @@ from pr_agent.algo.utils import update_settings_from_args
 from pr_agent.config_loader import get_settings, global_settings
 from pr_agent.git_providers import (get_git_provider,
                                     get_git_provider_with_context)
-from pr_agent.git_providers.git_provider import IncrementalPR
 from pr_agent.git_providers.utils import apply_repo_settings
 from pr_agent.identity_providers import get_identity_provider
 from pr_agent.identity_providers.identity_provider import Eligibility
 from pr_agent.log import LoggingFormat, get_logger, setup_logger
 from pr_agent.servers.utils import DefaultDictWithTimeout, verify_signature
+from . import start_server
 
 setup_logger(fmt=LoggingFormat.JSON, level="DEBUG")
 base_path = os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
@@ -418,7 +417,7 @@ app.include_router(router)
 
 
 def start():
-    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", "3000")))
+    start_server(app)
 
 
 if __name__ == '__main__':

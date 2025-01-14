@@ -2,7 +2,6 @@ import copy
 from enum import Enum
 from json import JSONDecodeError
 
-import uvicorn
 from fastapi import APIRouter, FastAPI, HTTPException
 from pydantic import BaseModel
 from starlette.middleware import Middleware
@@ -12,6 +11,7 @@ from starlette_context.middleware import RawContextMiddleware
 from pr_agent.agent.pr_agent import PRAgent
 from pr_agent.config_loader import get_settings, global_settings
 from pr_agent.log import get_logger, setup_logger
+from . import start_server
 
 setup_logger()
 router = APIRouter()
@@ -70,8 +70,7 @@ def start():
     app = FastAPI(middleware=middleware)
     app.include_router(router)
 
-    uvicorn.run(app, host="0.0.0.0", port=3000)
-
+    start_server(app)
 
 if __name__ == '__main__':
     start()

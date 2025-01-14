@@ -3,6 +3,9 @@
 # Your repository configuration should only include options you wish to override from the defaults.
 
 [config]
+# listen
+host = "0.0.0.0"
+port = 3000
 # models
 model="o3-mini"
 fallback_models=["gpt-4o-2024-11-20"]
