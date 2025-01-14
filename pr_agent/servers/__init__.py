@@ -8,7 +8,8 @@ from pr_agent.config_loader import get_settings
 DEFAULT_HOST: str = "0.0.0.0"
 DEFAULT_PORT: int = 3000
 
-def run(app: FastAPI) -> None:
+
+def start_server(app: FastAPI) -> None:
     """Start the Qodo Merge (PR Agent) server."""
     host_address: str = get_settings().get("config.host", DEFAULT_HOST)
     port_number: int = int(get_settings().get("config.port", DEFAULT_PORT))

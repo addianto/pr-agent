@@ -23,7 +23,7 @@ from pr_agent.identity_providers import get_identity_provider
 from pr_agent.identity_providers.identity_provider import Eligibility
 from pr_agent.log import LoggingFormat, get_logger, setup_logger
 from pr_agent.secret_providers import get_secret_provider
-from . import run
+from . import start_server
 
 setup_logger(fmt=LoggingFormat.JSON, level="DEBUG")
 router = APIRouter()
@@ -254,7 +254,7 @@ def start():
     app = FastAPI(middleware=middleware)
     app.include_router(router)
 
-    run(app)
+    start_server(app)
 
 if __name__ == '__main__':
     start()

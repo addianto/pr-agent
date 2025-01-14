@@ -2,14 +2,14 @@ from unittest.mock import patch
 
 from fastapi import FastAPI
 
-from pr_agent.servers import run, DEFAULT_HOST, DEFAULT_PORT
+from pr_agent.servers import start_server, DEFAULT_HOST, DEFAULT_PORT
 
 
-class TestRunFunction:
+class TestStartServer:
 
     @patch('pr_agent.servers.get_settings')
     @patch('pr_agent.servers.uvicorn.run')
-    def test_run_function(self, mock_uvicorn_run, mock_get_settings):
+    def test_start_server(self, mock_uvicorn_run, mock_get_settings):
         # Arrange
         app = FastAPI()
         mock_settings = {
@@ -19,7 +19,7 @@ class TestRunFunction:
         mock_get_settings.return_value = mock_settings
 
         # Act
-        run(app)
+        start_server(app)
 
         # Assert
         assert mock_get_settings.call_count == 2
@@ -28,7 +28,7 @@ class TestRunFunction:
     @patch('pr_agent.servers.get_settings')
     @patch('pr_agent.servers.uvicorn.run')
     @patch.dict('os.environ', {'PORT': '9000'})
-    def test_run_function_with_env_port(self, mock_uvicorn_run, mock_get_settings):
+    def test_start_server_with_env_port(self, mock_uvicorn_run, mock_get_settings):
         # Arrange
         app = FastAPI()
         mock_settings = {
@@ -38,7 +38,7 @@ class TestRunFunction:
         mock_get_settings.return_value = mock_settings
 
         # Act
-        run(app)
+        start_server(app)
 
         # Assert
         assert mock_get_settings.call_count == 2
@@ -46,14 +46,14 @@ class TestRunFunction:
 
     @patch('pr_agent.servers.get_settings')
     @patch('pr_agent.servers.uvicorn.run')
-    def test_run_function_with_defaults(self, mock_uvicorn_run, mock_get_settings):
+    def test_start_server_with_defaults(self, mock_uvicorn_run, mock_get_settings):
         # Arrange
         app = FastAPI()
         mock_settings = {}
         mock_get_settings.return_value = mock_settings
 
         # Act
-        run(app)
+        start_server(app)
 
         # Assert
         assert mock_get_settings.call_count == 2
