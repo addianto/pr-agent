@@ -1,9 +1,7 @@
 import ast
 import json
-import os
 from typing import List
 
-import uvicorn
 from fastapi import APIRouter, FastAPI
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import RedirectResponse
@@ -20,6 +18,7 @@ from pr_agent.config_loader import get_settings
 from pr_agent.git_providers.utils import apply_repo_settings
 from pr_agent.log import LoggingFormat, get_logger, setup_logger
 from pr_agent.servers.utils import verify_signature
+from . import start_server
 
 setup_logger(fmt=LoggingFormat.JSON, level="DEBUG")
 router = APIRouter()
@@ -157,8 +156,8 @@ async def root():
 def start():
     app = FastAPI(middleware=[Middleware(RawContextMiddleware)])
     app.include_router(router)
-    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", "3000")))
 
+    start_server(app)
 
 if __name__ == "__main__":
     start()
