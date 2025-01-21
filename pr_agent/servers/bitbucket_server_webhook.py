@@ -17,8 +17,8 @@ from pr_agent.algo.utils import update_settings_from_args
 from pr_agent.config_loader import get_settings
 from pr_agent.git_providers.utils import apply_repo_settings
 from pr_agent.log import LoggingFormat, get_logger, setup_logger
+from pr_agent.servers import start_server
 from pr_agent.servers.utils import verify_signature
-from . import start_server
 
 setup_logger(fmt=LoggingFormat.JSON, level="DEBUG")
 router = APIRouter()
