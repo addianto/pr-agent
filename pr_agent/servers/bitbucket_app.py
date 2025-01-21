@@ -23,7 +23,7 @@ from pr_agent.identity_providers import get_identity_provider
 from pr_agent.identity_providers.identity_provider import Eligibility
 from pr_agent.log import LoggingFormat, get_logger, setup_logger
 from pr_agent.secret_providers import get_secret_provider
-from . import start_server
+from pr_agent.servers import start_server
 
 setup_logger(fmt=LoggingFormat.JSON, level="DEBUG")
 router = APIRouter()

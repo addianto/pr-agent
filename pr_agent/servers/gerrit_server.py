@@ -11,7 +11,7 @@ from starlette_context.middleware import RawContextMiddleware
 from pr_agent.agent.pr_agent import PRAgent
 from pr_agent.config_loader import get_settings, global_settings
 from pr_agent.log import get_logger, setup_logger
-from . import start_server
+from pr_agent.servers import start_server
 
 setup_logger()
 router = APIRouter()
