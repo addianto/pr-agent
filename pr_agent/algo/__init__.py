@@ -81,4 +81,7 @@ MAX_TOKENS = {
     "ollama/llama3.1-csui:8b": 16384,
     "ollama/qwen2.5-csui:14b": 8192,
     "ollama/qwen2.5-coder-csui:14b": 8192,
+    "ollama/csui/deepseek-r1-qwen-distill-14b:latest": 8192,
+    "ollama/csui/qwen2.5-coder-14b:latest": 8192,
+    "ollama/csui/llama3.1-8b:latest": 16384,
 }
