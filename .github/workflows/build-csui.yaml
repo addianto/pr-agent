@@ -1,5 +1,5 @@
 ---
-name: Build Qodo Merge webhook for GitLab CSUI
+name: Build PR Agent webhook for GitLab CSUI
 
 on:
   push:
@@ -29,5 +29,5 @@ jobs:
           context: .
           file: ./docker/Dockerfile
           push: true
-          tags: docker.io/${{ vars.DOCKERHUB_USERNAME }}/qodo-merge:gitlab-csui-webhook
+          tags: docker.io/${{ vars.DOCKERHUB_USERNAME }}/pr-agent:gitlab-csui-webhook
           target: gitlab_webhook
