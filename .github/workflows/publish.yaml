@@ -8,6 +8,17 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        variant:
+          - github_app
+          - bitbucket_app
+          - bitbucket_server_webhook
+          - github_polling
+          - gitlab_webhook
+          - azure_devops_webhook
+          - cli
+
     runs-on: ubuntu-24.04
     steps:
       - id: checkout
@@ -29,5 +40,5 @@ jobs:
           context: .
           file: ./docker/Dockerfile
           push: true
-          tags: docker.io/${{ vars.DOCKERHUB_USERNAME }}/pr-agent:develop
-          target: cli
+          tags: docker.io/${{ vars.DOCKERHUB_USERNAME }}/pr-agent:${{ github.ref_name }}-${{ matrix.variant }}
+          target: ${{ matrix.variant }}
