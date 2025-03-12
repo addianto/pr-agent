@@ -108,7 +108,7 @@ class LiteLLMAIHandler(BaseAiHandler):
         # OpenLIT
         # See: https://docs.openlit.io/latest/integrations/litellm
         if (
-                get_settings().get("openlit.enable_otel_collector", False)
+                get_settings().get("openlit.enable_openlit", False)
                 and get_settings().get("openlit.otlp_endpoint", None)
         ):
             import openlit
