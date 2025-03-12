@@ -107,15 +107,17 @@ class LiteLLMAIHandler(BaseAiHandler):
 
         # OpenLIT
         # See: https://docs.openlit.io/latest/integrations/litellm
-        if (get_settings().get("openlit.enable_otel_collector", False)
+        if (
+                get_settings().get("openlit.enable_otel_collector", False)
                 and get_settings().get("openlit.otlp_endpoint", None)
-                or get_settings().get("openlit.otlp_headers", None)
         ):
             import openlit
-            openlit.init(
-                otlp_endpoint=get_settings().get('openlit.otlp_endpoint'),
-                otlp_headers=get_settings().get('openlit.otlp_headers'),
-            )
+
+            endpoint = get_settings().get('openlit.otlp_endpoint')
+            headers = get_settings().get('openlit.otlp_headers', None)
+
+            get_logger().info(f'Initializing OpenLIT with endpoint {endpoint} and headers {headers}')
+            openlit.init(otlp_endpoint=endpoint, otlp_headers=headers)
 
     def prepare_logs(self, response, system, user, resp, finish_reason):
         response_log = response.dict().copy()
@@ -276,13 +278,13 @@ class LiteLLMAIHandler(BaseAiHandler):
                 except json.JSONDecodeError as e:
                     raise ValueError(f"LITELLM.EXTRA_HEADERS contains invalid JSON: {str(e)}")
                 kwargs["extra_headers"] = litellm_extra_headers
-            
+
             get_logger().debug("Prompts", artifact={"system": system, "user": user})
-            
+
             if get_settings().config.verbosity_level >= 2:
                 get_logger().info(f"\nSystem prompt:\n{system}")
                 get_logger().info(f"\nUser prompt:\n{user}")
-                
+
             response = await acompletion(**kwargs)
         except (openai.APIError, openai.APITimeoutError) as e:
             get_logger().warning(f"Error during LLM inference: {e}")
