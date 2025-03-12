@@ -347,3 +347,4 @@ pr_commands = [
 [openlit]
 enable_otel_collector = false
 otlp_endpoint = ""
+otlp_headers = ""
