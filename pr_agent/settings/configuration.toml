@@ -345,5 +345,6 @@ pr_commands = [
 ]
 
 [openlit]
-enable_otel_collector = false
+enable_openlit = false
 otlp_endpoint = ""
+otlp_headers = ""
