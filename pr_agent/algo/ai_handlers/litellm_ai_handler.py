@@ -108,10 +108,13 @@ class LiteLLMAIHandler(BaseAiHandler):
         # OpenLIT
         # See: https://docs.openlit.io/latest/integrations/litellm
         if (get_settings().get("openlit.enable_otel_collector", False)
-                and get_settings().get("openlit.otlp_endpoint", None)):
+                and get_settings().get("openlit.otlp_endpoint", None)
+                or get_settings().get("openlit.otlp_headers", None)
+        ):
             import openlit
             openlit.init(
-                otlp_endpoint=get_settings().get('openlit.otlp_endpoint')
+                otlp_endpoint=get_settings().get('openlit.otlp_endpoint'),
+                otlp_headers=get_settings().get('openlit.otlp_headers'),
             )
 
     def prepare_logs(self, response, system, user, resp, finish_reason):
