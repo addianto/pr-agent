@@ -105,20 +105,6 @@ class LiteLLMAIHandler(BaseAiHandler):
         # Models that support reasoning effort
         self.support_reasoning_models = SUPPORT_REASONING_EFFORT_MODELS
 
-        # OpenLIT
-        # See: https://docs.openlit.io/latest/integrations/litellm
-        if (
-                get_settings().get("openlit.enable_openlit", False)
-                and get_settings().get("openlit.otlp_endpoint", None)
-        ):
-            import openlit
-
-            endpoint = get_settings().get('openlit.otlp_endpoint')
-            headers = get_settings().get('openlit.otlp_headers', None)
-
-            get_logger().info(f'Initializing OpenLIT with endpoint {endpoint} and headers {headers}')
-            openlit.init(otlp_endpoint=endpoint, otlp_headers=headers)
-
     def prepare_logs(self, response, system, user, resp, finish_reason):
         response_log = response.dict().copy()
         response_log['system'] = system

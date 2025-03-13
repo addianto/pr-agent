@@ -343,8 +343,3 @@ pr_commands = [
     "/review",
     "/improve",
 ]
-
-[openlit]
-enable_openlit = false
-otlp_endpoint = ""
-otlp_headers = ""
